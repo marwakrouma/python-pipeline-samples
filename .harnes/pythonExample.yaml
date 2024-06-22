@@ -50,7 +50,6 @@ pipeline:
                        ADD . /python-pipeline-samples
                        RUN pip install -r requirements.txt
                        CMD ["python" , "app.py"]
-                       EOM
                        cat pythondockerfile
               - step:
                   type: BuildAndPushDockerRegistry
