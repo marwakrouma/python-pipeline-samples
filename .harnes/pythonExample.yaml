@@ -35,24 +35,6 @@ pipeline:
                     shell: Sh
                     command: python -m compileall ./
               - step:
-                  type: Run
-                  name: create Docker file
-                  identifier: create_Docker_file
-                  spec:
-                    connectorRef: docker_quickstart
-                    image: alpine
-                    shell: Sh
-                    command: |-
-                      touch pythondockerfile
-                      cat >pythondockerfile <<EOL
-                      FROM python:3.10.6-alpine
-                      WORKDIR /python-pipeline-samples
-                      ADD . /python-pipeline-samples
-                      RUN pip install -r requirements.txt
-                      CMD ["python" , "app.py"]
-                      EOL
-                      cat pythondockerfile
-              - step:
                   type: BuildAndPushDockerRegistry
                   name: Build and push image to docker hub
                   identifier: Build_and_push_image_to_docker_hub
